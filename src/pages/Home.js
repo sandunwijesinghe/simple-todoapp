@@ -37,7 +37,7 @@ function Home() {
   //add todo list
   const addTodo = (event) => {
     event.preventDefault();
-
+    if(inputValue===""){return;}
     const newTodo = {
       id: todoList.length + 1,
       title: inputValue,
@@ -99,7 +99,7 @@ function Home() {
   return (
     <div className="flex flex-col items-center ">
       <div className="mt-20 w-1/3">
-        
+
         {" "}
         {/* title */}
         <h1 className="text-center text-4xl mb-7">Todo App</h1>
