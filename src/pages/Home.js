@@ -138,6 +138,7 @@ function Home() {
                     type="text"
                     className="bg-green-100 px-2 rounded-md h-100%  mt-1 border-2 border-green-400 w-full "
                     autoFocus="true"
+                    value={editValue}
                     onChange={todoHandleChange}
                   />
                 )}
