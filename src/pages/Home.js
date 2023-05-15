@@ -1,11 +1,6 @@
 import React, { useState } from "react";
-import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import EditIcon from "@mui/icons-material/Edit";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import DeleteIcon from "@mui/icons-material/Delete";
-import CancelIcon from "@mui/icons-material/Cancel";
-import SaveIcon from "@mui/icons-material/Save";
+import TodoList from "../components/TodoList";
 
 function Home() {
   const todos = [
@@ -104,9 +99,11 @@ function Home() {
   return (
     <div className="flex flex-col items-center ">
       <div className="mt-20 w-1/3">
+        
         {" "}
         {/* title */}
         <h1 className="text-center text-4xl mb-7">Todo App</h1>
+
         {/* input text */}
         <div className="todo-input  w-full flex flex-row h-9">
           <input
@@ -120,81 +117,22 @@ function Home() {
             <AddCircleIcon fontSize="large" color="primary" />
           </button>
         </div>
+
         {/* todo list */}
         <div className="todo-list  mt-6">
           {todoList?.map((todo) => (
-            <div id={todo.id} className="flex flex-row h-8 mt-1">
-              <div className="flex flex-col  w-full">
-                {" "}
-                {!todo.isEdit ? (
-                  <p className="bg-green-100 px-2 rounded-md h-100%  mt-1 border-2 border-green-400 w-full ">
-                    <span className={todo.isDone ? "line-through" : ""}>
-                      {" "}
-                      {todo.title}
-                    </span>
-                  </p>
-                ) : (
-                  <input
-                    type="text"
-                    className="bg-green-100 px-2 rounded-md h-100%  mt-1 border-2 border-green-400 w-full "
-                    autoFocus="true"
-                    value={editValue}
-                    onChange={todoHandleChange}
-                  />
-                )}
-              </div>
-              <button
-                className="   ml-2  "
-                onClick={() => doneTodo(todo.id)}
-                disabled={todo.isEdit}
-              >
-                {!todo.isDone ? (
-                  <CheckBoxOutlinedIcon
-                    fontSize="medium"
-                    color={todo.isEdit ? "disabled" : "secondary"}
-                  />
-                ) : (
-                  <CheckBoxIcon
-                    fontSize="medium"
-                    color={todo.isEdit ? "disabled" : "secondary"}
-                  />
-                )}
-              </button>
-
-              <button className="  ml-1  ">
-                {todo.isEdit ? (
-                  <CancelIcon
-                    fontSize="medium"
-                    color="action"
-                    onClick={() => cancelEdit(todo.id)}
-                  />
-                ) : (
-                  <EditIcon
-                    fontSize="medium"
-                    color="action"
-                    onClick={() => editTodo(todo.id)}
-                  />
-                )}
-              </button>
-
-              <button className="  ml-1 ">
-                {todo.isSave && (
-                  <SaveIcon
-                    fontSize="medium"
-                    color="action"
-                    onClick={() => saveEditedValue(todo.id)}
-                  />
-                )}
-              </button>
-              <button className="  ml-1 ">
-                <DeleteIcon
-                  fontSize="medium"
-                  color="error"
-                  onClick={() => deleteTodo(todo.id)}
-                />
-              </button>
-            </div>
+            <TodoList
+              todo={todo}
+              editValue={editValue}
+              todoHandleChange={todoHandleChange}
+              doneTodo={doneTodo}
+              cancelEdit={cancelEdit}
+              editTodo={editTodo}
+              saveEditedValue={saveEditedValue}
+              deleteTodo={deleteTodo}
+            />
           ))}
+
         </div>
       </div>
     </div>
