@@ -37,7 +37,10 @@ function Home() {
   //add todo list
   const addTodo = (event) => {
     event.preventDefault();
-    if(inputValue===""){return;}
+    if (inputValue === "") {
+      alert("You can't add empty todo.!");
+      return;
+    }
     const newTodo = {
       id: todoList.length + 1,
       title: inputValue,
@@ -83,6 +86,11 @@ function Home() {
 
   //save edited value
   const saveEditedValue = (id) => {
+    if (editValue === "") {
+      alert("You can't save empty todo.!");
+      return;
+    }
+
     const updatedList = todoList.map((todo) =>
       todo.id === id
         ? {
@@ -99,11 +107,9 @@ function Home() {
   return (
     <div className="flex flex-col items-center ">
       <div className="mt-20 w-1/3">
-
         {" "}
         {/* title */}
         <h1 className="text-center text-4xl mb-7">Todo App</h1>
-
         {/* input text */}
         <div className="todo-input  w-full flex flex-row h-9">
           <input
@@ -117,7 +123,6 @@ function Home() {
             <AddCircleIcon fontSize="large" color="primary" />
           </button>
         </div>
-
         {/* todo list */}
         <div className="todo-list  mt-6">
           {todoList?.map((todo) => (
@@ -132,7 +137,6 @@ function Home() {
               deleteTodo={deleteTodo}
             />
           ))}
-
         </div>
       </div>
     </div>

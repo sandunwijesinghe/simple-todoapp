@@ -71,7 +71,7 @@ function TodoList({
         )}
       </button>
 
-      <button className="  ml-1 ">
+      <button className="ml-1">
         {todo.isSave && (
           <SaveIcon
             fontSize="medium"
@@ -80,10 +80,10 @@ function TodoList({
           />
         )}
       </button>
-      <button className="  ml-1 ">
+      <button className="ml-1"  disabled={todo.isEdit}>
         <DeleteIcon
           fontSize="medium"
-          color="error"
+          color={todo.isEdit ? "disabled" : "error"}
           onClick={() => deleteTodo(todo.id)}
         />
       </button>
