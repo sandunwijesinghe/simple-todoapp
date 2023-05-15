@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-
+import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import EditIcon from "@mui/icons-material/Edit";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 function Home() {
   const todos = [
     { id: 1, title: "do homework", isDone: false },
@@ -41,35 +44,41 @@ function Home() {
         {/* title */}
         <h1 className="text-center text-4xl mb-7">Todo App</h1>
         {/* input text */}
-        <div className="todo-input  flex flex-row h-9">
+        <div className="todo-input  w-full flex flex-row h-9">
           <input
             value={inputValue}
+            placeholder="Enter todo here..."
             type="text"
-            className=" border border-gray-700 w-4/5"
+            className=" border w-full bg-gray-200 text-gray-800 text-center rounded-lg border-gray-700 "
             onChange={inputHandleChange}
           />
-          <button
-            className="ml-5 w-24 border border-gray-700 bg-blue-200 "
-            onClick={addTodo}
-          >
-            Add
+          <button className="ml-5 " onClick={addTodo}>
+            <AddCircleIcon fontSize="large" color="primary" />
           </button>
         </div>
         {/* todo list */}
         <div className="todo-list  mt-6">
           {todoList?.map((todo) => (
-            <div id={todo.id} className="flex flex-row h-auto mt-1">
-              <p className="bg-green-100 px-2 py-1 border border-gray-300 w-11/12 ">
+            <div id={todo.id} className="flex flex-row h-8 mt-1">
+              <p className="bg-green-100 px-2 rounded-md h-100%  mt-1 border-2 border-green-400 w-11/12 ">
                 <span className={todo.isDone ? "line-through" : ""}>
                   {" "}
                   {todo.title}
                 </span>
               </p>
+
               <button
-                className="bg-red-300 px-2   ml-2  "
+                className="   ml-2 h-100%  "
                 onClick={() => doneTodo(todo.id)}
               >
-                {todo.isDone ? "Undone" : "Done"}
+                {!todo.isDone ? (
+                  <CheckBoxOutlinedIcon fontSize="large" color="secondary" />
+                ) : (
+                  <CheckBoxIcon fontSize="large" color="secondary" />
+                )}
+              </button>
+              <button className=" px-1 ml-2 h-100%  ">
+                <EditIcon fontSize="medium" color="action" />
               </button>
             </div>
           ))}
